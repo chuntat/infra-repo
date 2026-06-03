@@ -1,5 +1,3 @@
-# terraform/variables.tf
-
 variable "nebius_token" {
   description = "Nebius IAM Token"
   type        = string
