@@ -5,6 +5,8 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -30,5 +32,10 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
+      - name: Debug Environment
+        run: |
+          echo "PROJECT_ID present? $([ -n "$TF_VAR_project_id" ] && echo YES || echo NO)"
+          echo "TOKEN present? $([ -n "$TF_VAR_nebius_token" ] && echo YES || echo NO)"
+
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -input=false
